@@ -1,78 +1,102 @@
-# Campus Item Borrowing Management System
-## 1. Project Overview
-Designed for campus scenarios, this system implements core functions including item borrowing, return, inventory management, and borrowing record tracking. It follows OOP principles: encapsulation, inheritance, and modularization. An additional min-heap and heap sort algorithm are implemented as the algorithm self-study task.
-## 2. Features
-### (1). Item Management
-- Add items, check item status (available/borrowed)
-### (2). User System
-- User/Admin roles (Admin inherits from User base class)
-### (3). Core Operations
-- Borrow item, return item, record operation logs
-### (4). Algorithm Module
-- Min-heap implementatoin + Heap sort algorithm (self-study content)
-### (5). Interface
-- Console menu-based interaction, simple and user-friendly
-## 3. Flie Structure 
-- campus-borrow-system/
-- |-- item.py
-- |-- user.py
-- |-- borrow_system.py
-- |-- heap_study.py
-- |-- main.py
-- |-- README.md
-## 4. Technical Hightlights
-### (1). Object-Oriented Programming
-- Encapsulatoin: Private attributes + public getter methods
-- Inheritance: Admin class inherits User class, overrides role judgement method
-### (2). Data Structures
-- Dictionaries for storing items and users for effficient lookup
-- Lists for storing borrowing/return records
-### (3). Algorithm Implementation
-- Min-heap (insert, heapify up, heapify down, extract min)
-- Heap-sort (ascending sorting based on min-heap)
-### (4). Modular Design
-- Files spit by responsibility, low coupling, easy maintenance and extansion
-## 5. Environment Requirements
-- Python 3.6 +
-- No third-party dependencies; runs with stansard libraries only
-## 6. Quick Start
-### (1). Clone/Download the Project
+# README
+## Table of Contents
+- [Task 1: Campus Item Borrowing Management System](#task1)
+  - [Overview](#task1-overview)
+  - [File Structure](#task1-file-structure)
+  - [Quick Start](#task1-quick-start)
+  - [Code Explanation](#task1-code-explanation)
+- [Task 2: MinHeap Implementation and Heap Sort](#task2)
+  - [Overview](#task2-overview)
+  - [Quick Start](#task2-quick-start)
+  - [Code Explanation](#task2-code-explanation)
+
+---
+
+## <a name="task1"></a>Task 1: Campus Item Borrowing Management System
+### <a name="task1-overview"></a>Overview
+This task implements a lightweight campus item borrowing management system with core functionalities including viewing all items, borrowing items, returning items, and querying borrowing/return records. The system is designed following Object-Oriented Programming (OOP) principles, with clear encapsulation of data and modularization of business logic.
+
+### <a name="task1-file-structure"></a>File Structure
 ```
-git clone https://github.com/your-username/campus-borow-system.git
-cd campus-borrow-system
+├── item.py          # Defines Item class (encapsulates item properties and borrow/return logic)
+├── user.py          # Defines User/Admin classes (distinguishes user roles)
+├── borrow_system.py # Implements BorrowSystem class (core system logic)
+└── main.py          # System entry (interactive command-line interface)
 ```
-### (2). Run the Main System
-```
-python main.py
-```
-### 
-- Built-in test data: Admin A001, Student S001, Items I001 (Power Bank), I002 (Umbrella)
-### 
-- Operate via menu prompts: view items, borow, return, check records
-### (3). Run the Heap Sort Study Module
-```
-python heap_study.py
-```
-- Prints original and sorted test array to verify algorithm correctness
-## 7. System Operation Guide
-- Menu options after running ``` main.py```:
-### (1). View all items: 
-- Show ID, name, category, and status of items
-### (2). Borrow item:
-- Enter user ID and item ID to borrow (fails if already borrowed or items does not exist)
-### (3). Return item:
-- Enter user ID to return (fails if not borrowed)
-### (4). View records:
-- Show all borrowing and return operation records
-### (5). Exit system:
-- Terminate the program
-## 8. Heap Sort Module Introduction
-Contents implemented in heap_study.py:
-- MinHeap class: Core min-heap operations (insert, extract_min, heapify_up/down)
-- heap_sort function: Heap sort based on min-heap, time complexity O(n log n)
-- Test case: [8, 3, 5, 1, 10, 2], outputs sorted result
-## 9. Submission Compliance
-This project fully matches the COMP 2090SEF report requirements；
-- Code structure fully aligns with report design
-- Complete comments, standardized variable naming, clear logic
-- Satisfies assessment criteria: OOP, inheritance, encapsulation, modularization
+
+### <a name="task1-quick-start"></a>Quick Start
+1. Ensure Python 3.x is installed on your machine.
+2. Place all Task 1 files (`item.py`, `user.py`, `borrow_system.py`, `main.py`) in the same directory.
+3. Launch the system via command line:
+   ```shell
+   python main.py
+   ```
+4. Interact with the system through the menu:
+   - `1`: View all items (displays item ID, name, category and borrow status)
+   - `2`: Borrow an item (requires input of user ID and item ID)
+   - `3`: Return an item (requires input of item ID)
+   - `4`: View all borrowing/return records
+   - `0`: Exit the system
+
+### <a name="task1-code-explanation"></a>Code Explanation
+- **item.py**: The `Item` class encapsulates private attributes (`item_id`, `name`, `category`, `is_borrowed`, `borrower_id`) and provides methods to manipulate item status:
+  - `borrow_item(student_id)`: Checks if the item is available, updates borrow status and records the borrower if available.
+  - `return_item()`: Resets the borrow status and clears the borrower ID when the item is returned.
+  - Getter methods (`get_item_id()`, `get_name()`, etc.) and `__str__()` for safe attribute access and human-readable string representation.
+
+- **user.py**: Defines a base `User` class and an inherited `Admin` class:
+  - `User` class: Encapsulates `user_id` and `name`, with getter methods for basic information.
+  - `Admin` class: Overrides `is_admin()` to mark admin identity (returns `True` for admins, `False` for regular users).
+
+- **borrow_system.py**: The `BorrowSystem` class manages the entire borrowing lifecycle:
+  - `add_item()`/`add_user()`: Stores items/users in dictionaries for O(1) time complexity lookup by ID.
+  - `borrow_item(user_id, item_id)`: Validates user/item existence, executes borrow logic, and logs the operation to records.
+  - `return_item(item_id)`: Validates item existence, executes return logic, and logs the operation.
+  - `show_all_items()`/`show_records()`: Returns all items/records for display in the CLI.
+
+- **main.py**: Initializes the system with test data (1 admin, 1 student, 2 items) and provides an infinite loop menu for interactive operations until the user chooses to exit.
+
+---
+
+## <a name="task2"></a>Task 2: MinHeap Implementation and Heap Sort
+### <a name="task2-overview"></a>Overview
+This task implements a min-heap (minimum heap) data structure from scratch and leverages it to implement heap sort. A min-heap is a complete binary tree where each parent node's value is less than or equal to its child nodes, enabling efficient extraction of the minimum element (O(log n)) and in turn, an O(n log n) sorting algorithm.
+
+### <a name="task2-quick-start"></a>Quick Start
+1. Save the `heap_study.py` file to your working directory.
+2. Run the script directly:
+   ```shell
+   python heap_study.py
+   ```
+3. The script will output the test data and sorted result:
+   ```
+   Original data:  [8, 3, 5, 1, 10, 2]
+   Heap sort result:  [1, 2, 3, 5, 8, 10]
+   ```
+
+### <a name="task2-code-explanation"></a>Code Explanation
+- **MinHeap Class**: Core implementation of the min-heap data structure:
+  - `__init__()`: Initializes an empty list to store heap elements.
+  - `parent(i)`/`left_child(i)`/`right_child(i)`: Helper methods to calculate the index of parent/left child/right child nodes (critical for heap traversal).
+  - `insert(val)`: Appends a new value to the heap and calls `heapify_up()` to restore the min-heap property.
+  - `heapify_up(i)`: Compares the i-th element with its parent; swaps them if the child is smaller, and recurses upward until the heap property is satisfied.
+  - `extract_min()`: Removes and returns the minimum element (root of the heap):
+    1. Returns `None` if the heap is empty.
+    2. Replaces the root with the last element (after popping the last element from the heap).
+    3. Calls `heapify_down(0)` to rebalance the heap.
+  - `heapify_down(i)`: Finds the smallest element among the i-th node and its children; swaps the parent with the smallest child if needed, and recurses downward to maintain the min-heap property.
+
+- **heap_sort(arr)**: Implements heap sort using the custom min-heap:
+  1. Inserts all elements of the input array into the min-heap.
+  2. Repeatedly extracts the minimum element from the heap and appends it to the sorted array.
+  3. Returns the sorted array (ascending order).
+
+- **Main Execution**: Tests the heap sort with a sample array `[8, 3, 5, 1, 10, 2]`, printing both the original and sorted results for verification.
+
+---
+
+### How to Use
+1. Copy all the content above.
+2. Create a new file named `README.md` in your project root directory.
+3. Paste the content into the file and save it.
+4. The README is now ready for use with standard Markdown renderers (GitHub, VS Code, etc.).
