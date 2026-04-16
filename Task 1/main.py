@@ -3,14 +3,17 @@ from user import User, Admin
 from borrow_system import BorrowSystem
 
 def main():
+    # Initialize system
     system = BorrowSystem()
-    # test data
+
+    #Predefined test data
     admin = Admin("A001", "Admin")
     system.add_user(admin)
     system.add_user(User("S001", "Student 1"))
     system.add_item(Item("I001", "Power Bank", "Electronics"))
     system.add_item(Item("I002", "Umbrella", "Daily Necessities"))
 
+    # Main menu
     while True:
         print("\n===== Campus Item Borrowing Management System =====")
         print("1. View all items")
