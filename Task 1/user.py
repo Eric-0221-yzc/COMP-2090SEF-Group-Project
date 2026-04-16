@@ -1,4 +1,5 @@
 class User:
+    """Base class for regular users"""
     def __init__(self, user_id, name):
         self.__user_id = user_id
         self.__name = name
@@ -8,10 +9,12 @@ class User:
     
     def get_name(self):
         return self.__name
-    
+
+    #Check if this user is admin
     def is_admin(self):
         return False
     
 class Admin(User):
+    """Admin class, inherited from User"""
     def is_admin(self):
-        return True
+        return True #Override method
