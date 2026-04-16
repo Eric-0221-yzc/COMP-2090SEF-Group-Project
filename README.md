@@ -94,9 +94,3 @@ This task implements a min-heap (minimum heap) data structure from scratch and l
 - **Main Execution**: Tests the heap sort with a sample array `[8, 3, 5, 1, 10, 2]`, printing both the original and sorted results for verification.
 
 ---
-
-### How to Use
-1. Copy all the content above.
-2. Create a new file named `README.md` in your project root directory.
-3. Paste the content into the file and save it.
-4. The README is now ready for use with standard Markdown renderers (GitHub, VS Code, etc.).
